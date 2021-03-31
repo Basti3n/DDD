@@ -1,5 +1,4 @@
 import unittest
-from unittest.mock import Mock, MagicMock
 
 from src.model.patient.patient import Patient
 from src.model.practicien.practicien import Practitien
