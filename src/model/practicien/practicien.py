@@ -2,5 +2,6 @@ from dataclasses import dataclass
 
 
 @dataclass
-class Practitien:
+class Practicien:
+    id: int
     nom: str
