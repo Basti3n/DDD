@@ -1,7 +1,8 @@
 from dataclasses import dataclass
+from datetime import datetime
 
 
 @dataclass
 class Creneau:
-    date_start: int
-    date_end: int
+    date_start: datetime
+    date_end: datetime

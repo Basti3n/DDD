@@ -1,5 +1,6 @@
 import unittest
 
+from datetime import datetime
 from src.model.patient.patient import Patient
 from src.model.practicien.practicien import Practicien
 from src.model.rendez_vous.creneau import Creneau
@@ -20,15 +21,21 @@ class TestMain(unittest.TestCase):
 
     # TODO DATETIME
     def test_creer_rendez_vous(self):
-        initial_rdv = RendezVous(Patient(2, 'Bob'), Practicien(2, 'Baptiste'), Creneau(date_start=6, date_end=7))
-        output_rdv = self.rdv.execute(Patient(2, 'Bob'), Practicien(2, 'Baptiste'), Creneau(date_start=6, date_end=7))
+        date_start = datetime(2021, 4, 1, 6)
+        date_end = datetime(2021, 4, 1, 7)
+        initial_rdv = RendezVous(Patient(2, 'Bob'), Practicien(2, 'Baptiste'), Creneau(date_start, date_end))
+        output_rdv = self.rdv.execute(Patient(2, 'Bob'), Practicien(2, 'Baptiste'), Creneau(date_start, date_end))
         self.assertEqual(output_rdv, initial_rdv)
 
     def test_creer_rendez_vous_creneau_utilise(self):
-        params_rdv = Patient(2, 'Bob'), Practicien(1, "Jean"), Creneau(date_start=11, date_end=12)
+        date_start = datetime(2021, 4, 1, 11)
+        date_end = datetime(2021, 4, 1, 12)
+        params_rdv = Patient(2, 'Bob'), Practicien(1, 'Jean'), Creneau(date_start, date_end)
         self.assertRaises(Exception, self.rdv.execute, params_rdv)
 
     def test_creer_rendez_meme_creneau_practicien_different(self):
-        initial_rdv = RendezVous(Patient(3, 'Tom'), Practicien(3, "Alex"), Creneau(date_start=11, date_end=12))
-        output_rdv = self.rdv.execute(Patient(3, 'Tom'), Practicien(3, "Alex"), Creneau(date_start=11, date_end=12))
+        date_start = datetime(2021, 4, 1, 11)
+        date_end = datetime(2021, 4, 1, 12)
+        initial_rdv = RendezVous(Patient(3, 'Tom'), Practicien(3, 'Alex'), Creneau(date_start, date_end))
+        output_rdv = self.rdv.execute(Patient(3, 'Tom'), Practicien(3, 'Alex'), Creneau(date_start, date_end))
         self.assertEqual(output_rdv, initial_rdv)
