@@ -19,6 +19,6 @@ class CreerRendezVous:
     def execute(self, patient: Patient, practicien: Practicien, creneau: Creneau):
         rendez_vous_list = self.rendez_vous_repository.find_rendez_vous()
         rendez_vous = RendezVous(patient, practicien, creneau)
-        if not rendez_vous.est_valide(rendez_vous_list):
+        if not rendez_vous.est_realisable(rendez_vous_list):
             raise Exception
         return self.rendez_vous_repository.create_rendez_vous(rendez_vous)

@@ -13,12 +13,10 @@ class RendezVous:
     practicien: Practicien
     creneau: Creneau
 
-    def est_valide(self, rendez_vous_list: List[RendezVous]) -> bool:
-        if self.creneau.date_start >= self.creneau.date_end:
+    def est_realisable(self, rendez_vous_list: List[RendezVous]) -> bool:
+        if self.creneau.date_debut >= self.creneau.date_fin:
             return False
         for rdv in rendez_vous_list:
-            if rdv.practicien.id == self.practicien.id and (
-                    rdv.creneau.date_start <= self.creneau.date_start < rdv.creneau.date_end or
-                    rdv.creneau.date_start < self.creneau.date_end <= rdv.creneau.date_end):
+            if self.practicien.id == rdv.practicien.id and self.creneau.est_compris_dans(rdv.creneau):
                 return False
         return True
