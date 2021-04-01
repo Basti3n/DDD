@@ -1,3 +1,4 @@
+from __future__ import annotations
 from dataclasses import dataclass
 from typing import List
 
@@ -12,7 +13,7 @@ class RendezVous:
     practicien: Practicien
     creneau: Creneau
 
-    def est_valide(self, rendez_vous_list: List[any]) -> bool:
+    def est_valide(self, rendez_vous_list: List[RendezVous]) -> bool:
         if self.creneau.date_start >= self.creneau.date_end:
             return False
         for rdv in rendez_vous_list:
