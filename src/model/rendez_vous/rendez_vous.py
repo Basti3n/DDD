@@ -5,6 +5,7 @@ from typing import List
 from src.model.patient.patient import Patient
 from src.model.practicien.practicien import Practicien
 from src.model.rendez_vous.creneau import Creneau
+from src.model.rendez_vous.statut import Statut
 
 
 @dataclass
@@ -12,6 +13,7 @@ class RendezVous:
     patient: Patient
     practicien: Practicien
     creneau: Creneau
+    statut: Statut = Statut.VALIDE
 
     def est_realisable(self, rendez_vous_list: List[RendezVous]) -> bool:
         if self.creneau.date_debut >= self.creneau.date_fin:

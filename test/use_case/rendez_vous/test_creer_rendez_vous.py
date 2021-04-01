@@ -5,6 +5,7 @@ from src.model.patient.patient import Patient
 from src.model.practicien.practicien import Practicien
 from src.model.rendez_vous.creneau import Creneau
 from src.model.rendez_vous.rendez_vous import RendezVous
+from src.model.rendez_vous.statut import Statut
 from src.use_case.rendez_vous.creer_rendez_vous import CreerRendezVous
 from test.use_case.rendez_vous.fake_patients import FakePatients
 from test.use_case.rendez_vous.fake_practiciens import FakePracticiens
@@ -22,9 +23,8 @@ class TestMain(unittest.TestCase):
     def test_creer_rendez_vous(self):
         date_start = datetime(2021, 4, 1, 6)
         date_end = datetime(2021, 4, 1, 7)
-        initial_rdv = RendezVous(Patient(2, 'Bob'), Practicien(2, 'Baptiste'), Creneau(date_start, date_end))
         output_rdv = self.rdv.execute(Patient(2, 'Bob'), Practicien(2, 'Baptiste'), Creneau(date_start, date_end))
-        self.assertEqual(output_rdv, initial_rdv)
+        self.assertEqual(output_rdv.statut, Statut.VALIDE)
 
     def test_creer_rendez_vous_creneau_utilise(self):
         date_start = datetime(2021, 4, 1, 11)

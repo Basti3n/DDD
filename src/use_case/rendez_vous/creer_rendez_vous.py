@@ -5,6 +5,7 @@ from src.model.practicien.practicien_repository import PracticienRepository
 from src.model.rendez_vous.creneau import Creneau
 from src.model.rendez_vous.rendez_vous import RendezVous
 from src.model.rendez_vous.rendez_vous_repository import RendezVousRepository
+from src.model.rendez_vous.statut import Statut
 
 
 class CreerRendezVous:
