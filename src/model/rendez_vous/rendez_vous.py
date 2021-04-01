@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import List
 
 from src.model.patient.patient import Patient
@@ -13,6 +13,7 @@ class RendezVous:
     patient: Patient
     practicien: Practicien
     creneau: Creneau
+    rendez_vous_id: int = 0
     statut: Statut = Statut.VALIDE
 
     def est_realisable(self, rendez_vous_list: List[RendezVous]) -> bool:

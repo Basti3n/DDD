@@ -15,3 +15,6 @@ class RendezVousRepository:
 
     def find_rendez_vous(self) -> List[RendezVous]:
         raise NotImplementedError
+
+    def update_rendez_vous(self, rendez_vous: RendezVous) -> RendezVous:
+        raise NotImplementedError
