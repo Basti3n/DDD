@@ -1,4 +1,4 @@
-from typing import Optional, List
+from typing import List
 
 from src.model.patient.patient import Patient
 from src.model.practicien.practicien import Practicien
@@ -19,13 +19,5 @@ class FakeRendezVous(RendezVousRepository):
         self.rendez_vous.append(rdv)
         return rdv
 
-    def find_rendez_vous_by_practicien_id_between_dates(self, practicien_id: int, date_start: int, date_end: int) -> \
-            List[RendezVous]:
-        if date_start >= date_end:
-            raise Exception
-        results: List[RendezVous] = []
-        for rdv in self.rendez_vous:
-            if rdv.practicien.id == practicien_id and (
-                    rdv.creneau.date_start <= date_start < rdv.creneau.date_end or rdv.creneau.date_start < date_end <= rdv.creneau.date_end):
-                results.append(rdv)
-        return results
+    def find_rendez_vous(self) -> List[RendezVous]:
+        return self.rendez_vous
