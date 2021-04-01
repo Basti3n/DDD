@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Optional
+from typing import Optional, List
 
 from src.model.patient.patient import Patient
 from src.model.practicien.practicien import Practicien
@@ -13,5 +13,6 @@ class RendezVousRepository:
     def create_rendez_vous(self, patient: Patient, practicien: Practicien, creneau: Creneau) -> RendezVous:
         raise NotImplementedError
 
-    def find_rendez_vous_between_dates(self, date_start: int, date_end : int) -> Optional[RendezVous]:
+    def find_rendez_vous_by_practicien_id_between_dates(self, practicien_id: int, date_start: int, date_end: int) -> \
+            List[RendezVous]:
         raise NotImplementedError

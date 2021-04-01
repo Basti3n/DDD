@@ -17,6 +17,8 @@ class CreerRendezVous:
         self.rendez_vous_repository = rendez_vous_repository
 
     def execute(self, patient: Patient, practicien: Practicien, creneau: Creneau):
-        if self.rendez_vous_repository.find_rendez_vous_between_dates(creneau.date_start, creneau.date_end) is not None:
+        if len(self.rendez_vous_repository.find_rendez_vous_by_practicien_id_between_dates(practicien.id,
+                                                                                           creneau.date_start,
+                                                                                           creneau.date_end)) != 0:
             raise Exception
         return self.rendez_vous_repository.create_rendez_vous(patient, practicien, creneau)
