@@ -4,8 +4,8 @@ from src.model.practicien.practicien import Practicien
 from src.model.practicien.practicien_repository import PracticienRepository
 from src.model.rendez_vous.creneau import Creneau
 from src.model.rendez_vous.rendez_vous import RendezVous
+from src.model.rendez_vous.rendez_vous_non_valide_exception import RendezVousNonValideException
 from src.model.rendez_vous.rendez_vous_repository import RendezVousRepository
-from src.model.rendez_vous.statut import Statut
 
 
 class CreerRendezVous:
@@ -21,5 +21,5 @@ class CreerRendezVous:
         rendez_vous_list = self.rendez_vous_repository.find_rendez_vous()
         rendez_vous = RendezVous(patient, practicien, creneau)
         if not rendez_vous.est_realisable(rendez_vous_list):
-            raise Exception
+            raise RendezVousNonValideException
         return self.rendez_vous_repository.create_rendez_vous(rendez_vous)

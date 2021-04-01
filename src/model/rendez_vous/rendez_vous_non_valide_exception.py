@@ -1,0 +1,2 @@
+class RendezVousNonValideException(Exception):
+    pass
