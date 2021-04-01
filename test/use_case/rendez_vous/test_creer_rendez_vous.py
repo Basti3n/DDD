@@ -19,7 +19,6 @@ class TestMain(unittest.TestCase):
         rendez_vous_repository = FakeRendezVous()
         self.rdv = CreerRendezVous(patient_repository, practicien_repository, rendez_vous_repository)
 
-    # TODO DATETIME
     def test_creer_rendez_vous(self):
         date_start = datetime(2021, 4, 1, 6)
         date_end = datetime(2021, 4, 1, 7)

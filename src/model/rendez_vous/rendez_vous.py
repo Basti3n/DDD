@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import List
 
 from src.model.patient.patient import Patient
 from src.model.practicien.practicien import Practicien
@@ -10,3 +11,13 @@ class RendezVous:
     patient: Patient
     practicien: Practicien
     creneau: Creneau
+
+    def est_valide(self, rendez_vous_list: List[any]) -> bool:
+        if self.creneau.date_start >= self.creneau.date_end:
+            return False
+        for rdv in rendez_vous_list:
+            if rdv.practicien.id == self.practicien.id and (
+                    rdv.creneau.date_start <= self.creneau.date_start < rdv.creneau.date_end or
+                    rdv.creneau.date_start < self.creneau.date_end <= rdv.creneau.date_end):
+                return False
+        return True

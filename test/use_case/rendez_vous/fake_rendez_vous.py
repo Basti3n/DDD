@@ -31,10 +31,9 @@ class FakeRendezVous(RendezVousRepository):
                     datetime(2021, 4, 1, 21),
                     datetime(2021, 4, 1, 23)))]
 
-    def create_rendez_vous(self, patient: Patient, practicien: Practicien, creneau: Creneau) -> RendezVous:
-        rdv = RendezVous(patient, practicien, creneau)
-        self.rendez_vous.append(rdv)
-        return rdv
+    def create_rendez_vous(self, rendez_vous: RendezVous) -> RendezVous:
+        self.rendez_vous.append(rendez_vous)
+        return rendez_vous
 
     def find_rendez_vous(self) -> List[RendezVous]:
         return self.rendez_vous
