@@ -1,3 +1,5 @@
+from typing import List
+
 from src.model.patient.patient import Patient
 from src.model.patient.patient_repository import PatientRepository
 
@@ -12,3 +14,6 @@ class FakePatients(PatientRepository):
             if patient.id == patient_id:
                 return patient
         raise Exception
+
+    def find_patients(self) -> List[Patient]:
+        return self.patients
