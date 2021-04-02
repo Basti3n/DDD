@@ -3,9 +3,10 @@ import unittest
 from datetime import datetime
 from src.model.patient.patient import Patient
 from src.model.practicien.practicien import Practicien
+from src.model.practicien.practicien_non_trouve_exception import PracticienNonTrouveException
 from src.model.rendez_vous.creneau import Creneau
-from src.model.rendez_vous.rendez_vous import RendezVous
 from src.model.rendez_vous.rendez_vous_non_valide_exception import RendezVousNonValideException
+from src.model.rendez_vous.rendez_vous import RendezVous
 from src.model.rendez_vous.statut import Statut
 from src.use_case.rendez_vous.creer_rendez_vous import CreerRendezVous
 from test.use_case.rendez_vous.fake_patients import FakePatients
@@ -46,3 +47,9 @@ class TestMain(unittest.TestCase):
         initial_rdv = RendezVous(Patient(3, 'Tom'), Practicien(1, 'Jean'), Creneau(date_start, date_end), rendez_vous_id=6)
         output_rdv = self.creer_rendez_vous.execute(Patient(3, 'Tom'), Practicien(1, 'Jean'), Creneau(date_start, date_end))
         self.assertEqual(output_rdv, initial_rdv)
+
+    def test_creer_rendez_vous_practicien_non_trouve(self):
+        date_start = datetime(2021, 4, 1, 6)
+        date_end = datetime(2021, 4, 1, 7)
+        params_rdv = [Patient(2, 'Bob'), Practicien(10, 'Albert'), Creneau(date_start, date_end)]
+        self.assertRaises(PracticienNonTrouveException, self.creer_rendez_vous.execute, *params_rdv)

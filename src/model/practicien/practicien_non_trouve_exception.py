@@ -1,0 +1,2 @@
+class PracticienNonTrouveException(Exception):
+    pass

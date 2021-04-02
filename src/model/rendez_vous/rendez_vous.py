@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import List
 
 from src.model.patient.patient import Patient
@@ -22,9 +22,14 @@ class RendezVous:
         if self.creneau.date_debut >= self.creneau.date_fin:
             return False
         for rdv in rendez_vous_list:
-            if self.practicien.id == rdv.practicien.id and self.creneau.est_compris_dans(rdv.creneau) and rdv.statut != Statut.ANNULE:
+            if self.practicien.id == rdv.practicien.id \
+                    and self.creneau.est_compris_dans(rdv.creneau) \
+                    and not rdv.est_annule():
                 return False
         return True
+
+    def est_annule(self):
+        return self.statut == Statut.ANNULE
 
     def modifier_statut(self, nouveau_statut: Statut) -> None:
         if self.statut == Statut.CLOS:

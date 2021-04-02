@@ -1,3 +1,5 @@
+from typing import List
+
 from src.model.practicien.practicien import Practicien
 from src.model.practicien.practicien_repository import PracticienRepository
 
@@ -12,3 +14,6 @@ class FakePracticiens(PracticienRepository):
             if practicien.id == practicien_id:
                 return practicien
         raise Exception
+
+    def find_practiciens(self) -> List[Practicien]:
+        return self.practiciens

@@ -1,6 +1,7 @@
 from src.model.patient.patient import Patient
 from src.model.patient.patient_repository import PatientRepository
 from src.model.practicien.practicien import Practicien
+from src.model.practicien.practicien_non_trouve_exception import PracticienNonTrouveException
 from src.model.practicien.practicien_repository import PracticienRepository
 from src.model.rendez_vous.creneau import Creneau
 from src.model.rendez_vous.rendez_vous import RendezVous
@@ -19,7 +20,10 @@ class CreerRendezVous:
 
     def execute(self, patient: Patient, practicien: Practicien, creneau: Creneau):
         rendez_vous_list = self.rendez_vous_repository.find_rendez_vous()
+        practicien_lists = self.practicien_repository.find_practiciens()
         rendez_vous = RendezVous(patient, practicien, creneau)
         if not rendez_vous.est_realisable(rendez_vous_list):
             raise RendezVousNonValideException
+        if not practicien.est_present_dans(practicien_lists):
+            raise PracticienNonTrouveException
         return self.rendez_vous_repository.create_rendez_vous(rendez_vous)
