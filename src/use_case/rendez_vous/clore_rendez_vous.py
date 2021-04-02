@@ -1,6 +1,4 @@
 from src.model.rendez_vous.rendez_vous import RendezVous
-from src.model.rendez_vous.rendez_vous_deja_annule_exception import RendezVousDejaAnnuleException
-from src.model.rendez_vous.rendez_vous_deja_clos_exception import RendezVousDejaClosException
 from src.model.rendez_vous.rendez_vous_non_trouve_exception import RendezVousNonTrouveException
 from src.model.rendez_vous.rendez_vous_repository import RendezVousRepository
 from src.model.rendez_vous.statut import Statut
