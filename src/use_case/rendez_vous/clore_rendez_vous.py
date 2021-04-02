@@ -16,9 +16,5 @@ class CloreRendezVous:
             rdv = next(rdv for rdv in rendez_vous_list if rdv.rendez_vous_id == rdv_id)
         except StopIteration:
             raise RendezVousNonTrouveException
-        if rdv.statut == Statut.CLOS:
-            raise RendezVousDejaClosException
-        elif rdv.statut == Statut.ANNULE:
-            raise RendezVousDejaAnnuleException
-        rdv.statut = Statut.CLOS
+        rdv.modifier_statut(Statut.CLOS)
         return self.rendez_vous_repository.update_rendez_vous(rdv)
