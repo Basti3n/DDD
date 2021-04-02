@@ -22,7 +22,7 @@ class RendezVous:
         if self.creneau.date_debut >= self.creneau.date_fin:
             return False
         for rdv in rendez_vous_list:
-            if self.practicien.id == rdv.practicien.id and self.creneau.est_compris_dans(rdv.creneau):
+            if self.practicien.id == rdv.practicien.id and self.creneau.est_compris_dans(rdv.creneau) and rdv.statut != Statut.ANNULE:
                 return False
         return True
 

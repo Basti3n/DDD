@@ -36,6 +36,13 @@ class TestMain(unittest.TestCase):
     def test_creer_rendez_meme_creneau_practicien_different(self):
         date_start = datetime(2021, 4, 1, 11)
         date_end = datetime(2021, 4, 1, 12)
-        initial_rdv = RendezVous(Patient(3, 'Tom'), Practicien(3, 'Alex'), Creneau(date_start, date_end), 6)
+        initial_rdv = RendezVous(Patient(3, 'Tom'), Practicien(3, 'Alex'), Creneau(date_start, date_end), rendez_vous_id=6)
         output_rdv = self.creer_rendez_vous.execute(Patient(3, 'Tom'), Practicien(3, 'Alex'), Creneau(date_start, date_end))
+        self.assertEqual(output_rdv, initial_rdv)
+
+    def test_creer_rendez_vous_creneau_annule(self):
+        date_start = datetime(2021, 4, 3, 22)
+        date_end = datetime(2021, 4, 3, 23)
+        initial_rdv = RendezVous(Patient(3, 'Tom'), Practicien(1, 'Jean'), Creneau(date_start, date_end), rendez_vous_id=6)
+        output_rdv = self.creer_rendez_vous.execute(Patient(3, 'Tom'), Practicien(1, 'Jean'), Creneau(date_start, date_end))
         self.assertEqual(output_rdv, initial_rdv)
